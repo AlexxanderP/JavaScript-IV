@@ -17,7 +17,7 @@ class Person {
         this.gender = attributes.gender;
     }
     speak() {
-        return(`Hello my name is ${this.name}, I am from ${this.location}`)
+        console.log(`Hello my name is ${this.name}, I am from ${this.location}.`);
     }
 }
 
@@ -35,15 +35,18 @@ class Person {
 //   * `grade` receives a `student` object and a `subject` string as arguments and logs out '{student.name} receives a perfect score on {subject}'
 
 
-class Instructor {
+class Instructor extends Person {
     constructor(attributes) {
-        super(attributes)
+        super(attributes);
         this.specialty = attributes.specialty;
         this.favLanguage = attributes.favLanguage;
         this.catchPhrase = attributes.catchPhrase;
     }
     demo (subject) {
-        return (`Today we are learning about ${subject}`)
+        console.log(`Today we are learning about ${subject}`)
+    }
+    grade (student, subject) {
+        console.log(`${student.name} receives a perfect score on ${subject}`)
     }
 }
 
@@ -62,9 +65,51 @@ class Instructor {
 //   * `sprintChallenge` similar to PRAssignment but logs out `student.name has begun sprint challenge on {subject}`
 
 
+class Student extends Instructor{
+    constructor(attributes) {
+        super(attributes);
+        this.previousBackground = attributes.previousBackground;
+        this.className = attributes.className;
+        this.favSubjects = attributes.favSubjects;
+    }
+    listSubjects(){
+        this.favSubjects.forEach(item => console.log(item) );
+    }
+
+    PRAssignment (subject) {
+        console.log(`${this.name} has submitted a PR for ${subject}.`)
+    }
+}
 
 
 
+
+// #### Project Mananger
+
+// * Now that we have instructors and students, we'd be nowhere without our PM's
+// * ProjectManagers are extensions of Instructors
+// * ProjectManagers have the following uniqe props:
+//   * `gradClassName`: i.e. CS1
+//   * `favInstructor`: i.e. Sean
+// * ProjectManangers have the following Methods:
+//   * `standUp` a method that takes in a slack channel and logs `{name} announces to {channel}, @channel standy times!​​​​​
+//   * `debugsCode` a method that takes in a student object and a subject and logs out `{name} debugs {student.name}'s code on {subject}`
+
+
+class ProjectManager extends Student {
+    constructor(attributes) {
+        super(attributes);
+        this.className = attributes.className;
+        this.favInstructor = attributes.favInstructor;
+
+    }
+    standUp(channel){
+        console.log(`${this.name} announces to ${channel}, @channel standy times!`)
+    }
+    debugsCode(student, subject) {
+        console.log("debugs code",`${this.name} debugs ${student.name}'s code on ${subject}`)
+    }
+}
 
 
 
@@ -83,6 +128,16 @@ const ashtonKutcher = new Person({
     gender: 'Male'
 });
 
+const alexanderPiroumian = new Student({
+    name: 'Alexander',
+    age: 23,
+    location: 'California',
+    gender: 'Male',
+    previousBackground: 'Security',
+    className: 'Web17',
+    favSubjects: ['HTML', 'CSS', 'LESS', 'Javascript']
+});
+
 const timothyShores = new Student({
     name: 'Timothy',
     age: 29,
@@ -93,14 +148,12 @@ const timothyShores = new Student({
     favSubjects: ['HTML', 'CSS', 'LESS', 'Javascript']
 });
 
-const javontayMcElroy = new Student({
-    name: 'Javontay',
-    favSubjects: ['HTML', 'CSS', 'LESS', 'Javascript']
-
-});
 
 const omarSallah = new Student({
-    name: 'Justin',
+    name: 'Omar',
+    age: 23,
+    gender: 'Male',
+    previousBackground: 'entrepreneur',
     favSubjects: ['HTML', 'CSS', 'LESS', 'Javascript']
 });
 
@@ -136,24 +189,24 @@ austenAllred.speak();
 ashtonKutcher.speak();
 console.log('');
 
+console.log('Student Tests - Alexander Piroumian ');
+alexanderPiroumian.listSubjects();
+alexanderPiroumian.PRAssignment('Javascript IV');
+// alexanderPiroumian.sprintChallenge('Javascript IV');
+console.log('');
+
 console.log('Student Tests - Timothy Shores ');
 timothyShores.listSubjects();
-timothyShores.PRAssignment('Javascript IV');
-timothyShores.sprintChallenge('Javascript IV');
-console.log('');
-
-console.log('Student Tests - Javontay McElroy ');
-javontayMcElroy.listSubjects();
-javontayMcElroy.PRAssignment('Javascript III');
-javontayMcElroy.sprintChallenge('Javascript III');
+timothyShores.PRAssignment('Javascript III');
+// timothyShores.sprintChallenge('Javascript III');
 console.log('');
 
 
-console.log('Student Tests - Justin Davis ');
-justinDavis.listSubjects();
-justinDavis.PRAssignment('Javascript II');
-justinDavis.sprintChallenge('Javascript II');
-console.log('');
+// console.log('Student Tests - Justin Davis ');
+// justinDavis.listSubjects();
+// justinDavis.PRAssignment('Javascript II');
+// justinDavis.sprintChallenge('Javascript II');
+// console.log('');
 
 console.log('Instructor Tests - Josh Knell');
 joshKnell.demo('Javascript');
@@ -165,7 +218,7 @@ ryanHamblin.demo('Javascript');
 ryanHamblin.grade(alexanderPiroumian, "Javscript IV");
 console.log('');
 
-console.log('Project Manager Tests - Ryan Borgis');
+console.log('Project Manager Tests - Brandon');
 ryanBorgis.standUp('#web17_brandon');
 ryanBorgis.debugsCode(alexanderPiroumian, 'Javascript IV');
 console.log('');
