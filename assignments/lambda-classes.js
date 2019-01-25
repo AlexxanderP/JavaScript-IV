@@ -107,7 +107,7 @@ class ProjectManager extends Student {
         console.log(`${this.name} announces to ${channel}, @channel standy times!`)
     }
     debugsCode(student, subject) {
-        console.log("debugs code",`${this.name} debugs ${student.name}'s code on ${subject}`)
+        console.log(`${this.name} debugs ${student.name}'s code on ${subject}`)
     }
 }
 
@@ -201,6 +201,9 @@ timothyShores.PRAssignment('Javascript III');
 // timothyShores.sprintChallenge('Javascript III');
 console.log('');
 
+console.log('Student Tests - Omar Sallah-Eddine ');
+omarSallah.listSubjects();
+omarSallah.PRAssignment('Javascript III');
 
 // console.log('Student Tests - Justin Davis ');
 // justinDavis.listSubjects();
@@ -219,7 +222,7 @@ ryanHamblin.grade(alexanderPiroumian, "Javscript IV");
 console.log('');
 
 console.log('Project Manager Tests - Brandon');
-ryanBorgis.standUp('#web17_brandon');
-ryanBorgis.debugsCode(alexanderPiroumian, 'Javascript IV');
+brandonVilaychith.standUp('#web17_brandon');
+brandonVilaychith.debugsCode(alexanderPiroumian, 'Javascript IV');
 console.log('');
 
